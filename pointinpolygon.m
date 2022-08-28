@@ -6,8 +6,10 @@ clc
 N = 900;
 tt = linspace(0,2*pi,N);
 dt = tt(2)-tt(1);
-x = 1.5 + 3*sin(tt) + 5*cos(2*tt);
-y = 7*cos(tt);
+% x = 1.5 + 3*sin(tt) + 5*cos(2*tt);
+% y = 7*cos(tt);
+x = 5*cos(tt);
+y = 3*sin(tt);
 s = [x;y];
 
 % number of points in the polygon
@@ -21,8 +23,10 @@ aa = round(max([x y])); % grid size (aa x aa)
 % area = integral(@(y)xx2(y)-xx1(y),-7,7);
 
 % unit tangent and outward unit normal
-dxdt = 3*cos(tt)-10*sin(2*tt); % derivative of x-component
-dydt = -7*sin(tt); % derivative of y-component
+% dxdt = 3*cos(tt)-10*sin(2*tt); % derivative of x-component
+% dydt = -7*sin(tt); % derivative of y-component
+dxdt = -5*sin(tt);
+dydt = 3*cos(tt);
 t = [dxdt;dydt]... % unit tangent
      ./vecnorm([dxdt;dydt]);
 n = [-dydt;dxdt]./vecnorm([dxdt;dydt]); % unit normal
@@ -48,7 +52,7 @@ for j = 1:2*aa+1
         q = 2*pi; % define charge with value of 2pi
         E = q.*(s-[xx(1,k);yy(j,1)])... % E field eval. at s when q = (xx(1,j),yy(k,1))
             ./(2*pi*vecnorm(s-[xx(1,k);yy(j,1)]).^2);
-        Flux(j,k)= dot(E,n)*ds'; % Flux of E 2*pi*winding number
+        Flux(j,k)= dot(E,n)*ds'; % Flux of E (2*pi*winding number)
         if abs(Flux(j,k)) > q/2 
             in = in + 1; % flux inside = q
         else
