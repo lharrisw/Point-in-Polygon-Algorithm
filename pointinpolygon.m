@@ -1,5 +1,3 @@
-%% Application of the Divergence Theorem
-
 clear
 close all
 clc
