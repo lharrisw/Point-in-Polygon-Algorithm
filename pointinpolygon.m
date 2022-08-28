@@ -48,7 +48,7 @@ for j = 1:2*aa+1
         q = 2*pi; % define charge with value of 2pi
         E = q.*(s-[xx(1,k);yy(j,1)])... % E field eval. at s when q = (xx(1,j),yy(k,1))
             ./(2*pi*vecnorm(s-[xx(1,k);yy(j,1)]).^2);
-        Flux(j,k)= dot(E,n)*ds'; % Flux of E (2*pi*winding number)
+        Flux(j,k)= dot(E,n)*ds'; % Flux of E (2*pi*winding number);
         if abs(Flux(j,k)) > q/2 
             in = in + 1; % flux inside = q
         else
